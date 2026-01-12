@@ -65,7 +65,14 @@ export function ResumeUploader({ onUploadComplete, onSkip }) {
 
             setUploadProgress(80);
 
-            const result = await response.json();
+            const text = await response.text();
+            let result;
+
+            try {
+                result = text ? JSON.parse(text) : {};
+            } catch {
+                throw new Error("Server returned an invalid response. Please try again.");
+            }
 
             if (!response.ok) {
                 throw new Error(result.error || "Failed to parse resume");
