@@ -4,3 +4,5 @@ const nextConfig = {
 };
 
 export default nextConfig;
+// Force rebuild: text visibility fix 3
+// Build trigger

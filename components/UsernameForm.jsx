@@ -27,7 +27,7 @@ export function UsernameForm() {
 
         setLoading(true);
         setError("");
-        router.push(`/portfolio/${trimmed}`);
+        router.push(`/generate/${trimmed}`);
     };
 
     return (
