@@ -3,6 +3,7 @@ import { parseResumeWithLLM } from "@/lib/resumeParser";
 import { validateResumeFile } from "@/lib/resumeValidation";
 
 export const runtime = "nodejs";
+export const maxDuration = 60;
 
 export async function POST(request) {
     try {
@@ -26,7 +27,6 @@ export async function POST(request) {
         }
 
         const buffer = Buffer.from(await file.arrayBuffer());
-
         const resumeData = await parseResumeWithLLM(buffer, file.name);
 
         return NextResponse.json({
@@ -34,22 +34,20 @@ export async function POST(request) {
             data: resumeData,
         });
     } catch (error) {
-        console.error("Resume parsing error:", error);
-
-        const fallbackData = {
-            name: "Your Name",
-            title: "Software Developer",
-            summary: "Experienced developer passionate about building great software.",
-            contact: { email: "", linkedin: "", website: "", phone: "" },
-            experience: [],
-            education: [],
-            skills: ["JavaScript", "React", "Node.js"]
-        };
+        console.error("Resume API error:", error);
 
         return NextResponse.json({
             success: true,
-            data: fallbackData,
-            warning: "Resume parsing encountered an issue. Default data provided."
+            data: {
+                name: "Your Name",
+                title: "Software Developer",
+                summary: "Experienced developer passionate about building great software.",
+                contact: { email: "", linkedin: "", website: "", phone: "" },
+                experience: [],
+                education: [],
+                skills: ["JavaScript", "React", "Node.js"]
+            },
+            warning: "Could not parse resume. Using default template."
         });
     }
 }
