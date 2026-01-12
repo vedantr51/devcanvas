@@ -6,10 +6,7 @@ export default function Home() {
       {/* Navigation */}
       <header className="w-full px-6 md:px-12 py-4 flex items-center justify-between flex-shrink-0">
         <div className="flex items-center gap-2">
-          <div className="w-8 h-8 rounded-lg bg-gradient-to-br from-[#6366f1] to-[#8b5cf6] flex items-center justify-center">
-            <span className="text-white font-bold text-sm">D</span>
-          </div>
-          <span className="text-lg font-bold text-[#0f172a]">DevCanvas</span>
+          <img src="/logo.png" alt="DevCanvas" className="h-7 w-auto" />
         </div>
         <a
           href="https://github.com"

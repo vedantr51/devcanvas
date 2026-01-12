@@ -14,6 +14,10 @@ export const metadata = {
   description:
     "One-click portfolio generator that transforms your GitHub profile into a clean, professional developer portfolio.",
   keywords: ["portfolio", "github", "developer", "resume", "projects"],
+  icons: {
+    icon: "/logo.png",
+    apple: "/logo.png",
+  },
   openGraph: {
     title: "DevCanvas | Turn Your GitHub Into a Portfolio",
     description:
